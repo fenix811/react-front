@@ -1,14 +1,30 @@
 import React from 'react';
 import './App.css';
-import { Route, Switch } from 'react-router';
-import { ProductList } from './components/ProductList.tsx/ProductList';
-import { Header } from './layout/client/header';
+
+import { Route, Switch, BrowserRouter as Router, Link, withRouter, Redirect  } from 'react-router-dom';
+import { ClientApp } from './components/Containers/ClientApp';
+import { AdminApp } from './components/Containers/AdminApp';
+import { AuthService } from './services/AuthService';
+import { Login } from './components/Login/Login';
+
+
+const PrivateRoute = ({ component: Component, ...rest }: any) => (  //My HOC
+  <Route {...rest} render={(props) => (
+    AuthService.isAuth() === true
+      ? <Component {...props} />
+      : <Redirect to='/login' />
+  )} />
+)
 
 function App() {
   return (
-    <Switch>
-      <Route path="/" component={ProductList} />
-    </Switch>
+      <Switch>
+        <Route exact={true} path="/" component={ClientApp} />
+        <PrivateRoute path='/admin' component={AdminApp} />
+        <Route path='/login' component={Login} />
+
+        {/* <Route path="/admin" component={AdminApp} /> */}
+      </Switch>
     );
 }
 

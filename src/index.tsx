@@ -5,21 +5,20 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
-import { Router  } from 'react-router';
 import { createBrowserHistory } from 'history';
 import getStore from './redux/store'
 
-const history = createBrowserHistory();
+import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+
+//const history = createBrowserHistory();
 const store = getStore();
 
 
 ReactDOM.render(
   <Provider store={store}>
-<Router history={history}>
-      {/* <React.StrictMode> */}
-    <App />
-  {/* </React.StrictMode>, */}
-  </Router>
+    <Router>
+        <App />
+    </Router>
   </Provider>,
   document.getElementById('root')
 );
