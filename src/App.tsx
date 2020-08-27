@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 
 import { Route, Switch, BrowserRouter as Router, Link, withRouter, Redirect  } from 'react-router-dom';
-import { ClientApp } from './components/Containers/ClientApp';
+import ClientApp from './components/Containers/client/ClientApp';
 import { AdminApp } from './components/Containers/AdminApp';
 import { AuthService } from './services/AuthService';
 import { Login } from './components/Login/Login';
@@ -22,8 +22,6 @@ function App() {
         <Route exact={true} path="/" component={ClientApp} />
         <PrivateRoute path='/admin' component={AdminApp} />
         <Route path='/login' component={Login} />
-
-        {/* <Route path="/admin" component={AdminApp} /> */}
       </Switch>
     );
 }

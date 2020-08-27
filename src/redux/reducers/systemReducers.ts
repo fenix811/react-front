@@ -6,16 +6,11 @@ export interface ISystemState {
 const initialState: ISystemState = {
 }
 
-export const systemReducer = combineReducers({
-    auth(state = initialState, action) {
+const systemReducer = (state = initialState, action:any) => {
         switch (action.type) {
-        //   case types.AUTH_LOGIN_SUCCESS:
-        //     return {...action.user,
-        //     loggedIn: true,
-        //     }
   
             default:
                 return state;
         }
     }
-});
+export {systemReducer}

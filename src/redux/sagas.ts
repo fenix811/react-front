@@ -1,8 +1,8 @@
 import { fork } from 'redux-saga/effects';
-//import qwesagas from 'components/../sagas';
+import Product from '../components/Containers/client/saga';
 
 function* rootSaga() {
-//  yield fork(qwe);
+ yield fork(Product);
 }
 
 export default rootSaga;
