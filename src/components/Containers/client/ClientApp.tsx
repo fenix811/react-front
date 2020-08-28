@@ -2,16 +2,17 @@ import React, { PureComponent } from "react";
 import { connect } from 'react-redux';
 
 import { Header } from "../../../layout/client/Header";
-import {ProductList} from '../../ProductList/ProductList';
+import ProductList from '../../ProductList/ProductList';
 
 import * as actions from './actions';
 import selectors from './selectors';
 import { getProducts } from "./actions";
-//import { getProducts } from "./actions";
-
+import { IProduct } from "../../../models/product";
 
 interface IAppProps{
     dispatch: any;
+    isLoading: boolean;
+    products: IProduct[];
 };
 
  class ClientApp extends PureComponent<IAppProps> {
@@ -19,22 +20,25 @@ interface IAppProps{
        this.props.dispatch(getProducts());
     }
 
-    // function mapDispatchToProps(dispatch) {
-    //     return {
-    //         toggleModal: () => dispatch(toggleDeleteConfirmationModal()),
-    //         onModalFormSubmit:(data) => dispatch(submitDeleteConfirmationModalForm(data)),
-    //     };
-    //   }
     render(){
-     return (
-        <>
-            <Header></Header>
-            <hr  />
-            <div>ClientApp works</div>
-            <ProductList></ProductList>
-        </>
+        const { products } = this.props;
+           return (
+            <>
+                <Header></Header>
+                <hr  />
+                <div>ClientApp works</div>
+                {this.props && <ProductList products={products} />}
+            </>
      )   
     }
 }
 
-export default connect()(ClientApp);
+// const mapDispatchToProps = dispatch => ({
+//     sendMsg: msg => {
+//         dispatch(sendMsg(msg));
+//         dispatch(navigateTo({ routeName: 'myMsgList' }));
+//     }
+//    });
+
+   
+export default connect(selectors)(ClientApp);

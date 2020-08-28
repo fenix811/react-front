@@ -1,10 +1,24 @@
-import React, { PureComponent } from "react";
+import * as React from 'react';
+import { IProduct } from '../../models/product';
+import Product from '../Product/Product';
 
-export class ProductList extends PureComponent {
+interface IProductListProps {
+    products: IProduct[];
+}
 
-    render(){
-     return (
-     <div>productlist works</div>
-     )   
+class ProductList extends React.Component<IProductListProps> {
+    render() {
+        return (
+            <div>
+                {
+                    this.props.products.map((item) => (
+                        <Product product={item}
+                        />
+                    ))
+                }
+            </div >
+        );
     }
 }
+
+export default ProductList;

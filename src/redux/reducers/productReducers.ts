@@ -13,7 +13,8 @@ const productReducer = (state:any = initialState, actionPayload:any) => {
         switch (actionPayload.type) {
             case actions.GET_PRODUCTS_SUCCEED:
                 console.log(actionPayload);
-                return { ...state, products: actionPayload };
+                debugger;
+                return { ...state, products: actionPayload.data };
                 default:
                 return state
         }
