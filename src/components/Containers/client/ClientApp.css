@@ -1,0 +1,17 @@
+.client-container {
+    display: flex;
+}
+
+
+.color-grid {
+    div.client-container > div:nth-of-type(odd) {
+        background: #e0e0e0;
+    }
+
+}
+
+.vl {
+    border-left: 6px solid #e0e0e0;
+    height: 500px;
+  }
+  
