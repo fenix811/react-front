@@ -2,6 +2,7 @@ import * as React from 'react';
 import { IProduct } from '../../models/product';
 import '../Containers/client/ClientApp.css';
 import Product from './Product';
+import { useState } from 'react';
 
   
 interface IAddProductProps {
@@ -22,41 +23,32 @@ const styles = {
     },
   }
 
-//   const Product = (props: IProductProps) => {
-//     const [count, setCount] = useState(0);
-
-class AddProduct extends React.PureComponent<IAddProductProps, IAddProductState> {
-    constructor(props:any){
-        super(props)
-        this.state = {
-            name: '',
-            description: '',
-        }
-    }
-    handleInputChange = (e:any) => {
+export const AddProduct: React.FC<IAddProductProps> = ({addProduct}) => {
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target
-        this.setState({
-            [name]: value
-        })
+        setValues({...values, [name]: value})
     }
 
-    addProduct = () => {
-        this.props.addProduct(this.state);
+    const addItem = () => {
+        addProduct(values);
+        setValues({name: '', description: ''});
     }
-    render() {
-        return (
-            <div style={styles.product} >
-                <div>
-                    <span>name</span>
-                    <input style={styles.productLine} name='name' onChange={this.handleInputChange} value={this.state.name}/>
-                </div>
-                <div>
-                    <span>description</span>
-                    <input style={styles.productLine} name="description" onChange={this.handleInputChange} value={this.state.description}/>
-                </div>
-                <button onClick={this.addProduct}>Save</button>
+    const [values, setValues] = useState({name: '', description: ''})
+
+    return (
+        <div style={styles.product} >
+            <div>
+                <span>name</span>
+                <input style={styles.productLine} name='name' onChange={handleChange} value={values.name}/>
             </div>
-        );
-    }}
+            <div>
+                <span>description</span>
+                <input style={styles.productLine} name="description" onChange={handleChange} value={values.description}/>
+            </div>
+            <button onClick={addItem}>Save</button>
+        </div>
+    );
+}
+
 
 export default AddProduct;

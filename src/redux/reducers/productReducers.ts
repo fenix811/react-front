@@ -16,8 +16,6 @@ const initialState = {
 const productReducer = (state:any = initialState, actionPayload:any) => {
         switch (actionPayload.type) {
             case actions.GET_PRODUCTS_SUCCEED:
-                console.log(actionPayload);
-                debugger;
                 return { ...state, products: actionPayload.data };
                 case actions.ADD_TO_SHOPPINGCARD:
                     console.log(actionPayload);

@@ -6,6 +6,7 @@ import ClientApp from './components/Containers/client/ClientApp';
 import { AdminApp } from './components/Containers/AdminApp';
 import { AuthService } from './services/AuthService';
 import { Login } from './components/Login/Login';
+import ClientApp1 from './components/Containers/client/ClientApp1';
 
 
 const PrivateRoute = ({ component: Component, ...rest }: any) => (  //My HOC
@@ -19,7 +20,8 @@ const PrivateRoute = ({ component: Component, ...rest }: any) => (  //My HOC
 function App() {
   return (
       <Switch>
-        <Route exact={true} path="/" component={ClientApp} />
+        {/* <Route exact={true} path="/" component={ClientApp} /> */}
+        <Route exact={true} path="/" component={ClientApp1} />
         <PrivateRoute path='/admin' component={AdminApp} />
         <Route path='/login' component={Login} />
       </Switch>

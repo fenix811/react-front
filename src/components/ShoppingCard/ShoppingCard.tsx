@@ -6,6 +6,7 @@ import { useCallback } from 'react';
 interface IShoppingCardProps {
     orderItems: IOrderItem[];
     clear: Function;
+    submit: Function;
 }
 const styles= {
     cardHeader: {
@@ -20,6 +21,9 @@ const styles= {
 }
 
 const ShoppingCard = (props: IShoppingCardProps) => {
+    const handleSubmit = () => {
+        props.submit();
+    }
     // const handleClick = useCallback(() => {
     //     props.clear();
     //   })
@@ -27,15 +31,23 @@ const ShoppingCard = (props: IShoppingCardProps) => {
         <div style={styles.shoppingCard}>
                 <div style={styles.cardHeader}>Shopping Card</div>
                 <div>
-                    {/* <a href="#" onClick={handleClick}>clear</a> */}
-                    <a href="#" onClick={() => props.clear()}>clear</a>
+                    <span>Pay by: </span>
+                    <select name="cars" id="cars">
+                        <option value="Cash">Cash</option>
+                        <option value="Card">Card</option>
+                    </select>
                 </div>
                 {
                     props.orderItems.map((item) => (
-                        <ShoppingCardItem orderItem={item} key={item.id}
+                        <ShoppingCardItem orderItem={item} key={item.id || item.name}
                         />
                     ))
                 }
+                <div>
+                    {/* <a href="#" onClick={handleClick}>clear</a> */}
+                    <a href="#" onClick={() => props.clear()}>clear</a>
+                    <button onClick={() => handleSubmit()}>Create Order</button>
+                </div>
             </div >
         );
     }

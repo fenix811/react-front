@@ -23,7 +23,7 @@ const ProductList = (props: IProductListProps) => {
                 <div style={styles.productHeader}>Product list</div>
                 {
                     props.products.map((item) => (
-                        <Product product={item} addToCard={props.addToCard} key={item.id}/>
+                        <Product product={item} addToCard={props.addToCard} key={item.id || item.name}/>
                     ))
                 }
             </div >

@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React, { PureComponent, useEffect, useState } from "react";
 import { connect } from 'react-redux';
 import { useDispatch, useSelector } from "react-redux";
 
@@ -23,43 +23,63 @@ interface IAppProps{
     addToCard: Function;
 };
 
- class ClientApp extends PureComponent<IAppProps> {
-    componentDidMount() {
-       this.props.dispatch(getProducts());
-    }
-    addToCard = (product:any) => {
-        console.log(product);
-        debugger;
-       this.props.dispatch(addToShoppingCard(product));
-    }
+export const ClientApp: React.FC<IAppProps> = () => {
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(getProducts());
+    })
+    return (
+        <>
+            <Header></Header>
+            <hr  />
+            {/* <div className="client-container color-grid">
+            {<ProductList products={products} addToCard={this.addToCard}/>}
+            <div className="vl"></div>
+            {<ShoppingCard orderItems={orderItems} clear={this.clear}/>}
+            </div> */}
+            <AddProduct addProduct={addNewProduct}></AddProduct>
+        </>
+    )
 
-    addNewProduct = (product:any) => {
-        console.log(product);
-        debugger;
-       this.props.dispatch(addNewProduct(product));
-    }
-
-    clear = () => {
-        debugger;
-       this.props.dispatch(clearShoppingCard());
-    }
-
-    render(){
-        const { products, orderItems } = this.props;
-           return (
-            <>
-                <Header></Header>
-                <hr  />
-                <div className="client-container color-grid">
-                {this.props && <ProductList products={products} addToCard={this.addToCard}/>}
-                <div className="vl"></div>
-                {this.props && <ShoppingCard orderItems={orderItems} clear={this.clear}/>}
-                </div>
-                <AddProduct addProduct={this.addNewProduct}></AddProduct>
-            </>
-     )   
-    }
 }
+
+//  class ClientApp extends PureComponent<IAppProps> {
+//     componentDidMount() {
+//        this.props.dispatch(getProducts());
+//     }
+//     addToCard = (product:any) => {
+//         console.log(product);
+//         debugger;
+//        this.props.dispatch(addToShoppingCard(product));
+//     }
+
+//     addNewProduct = (product:any) => {
+//         console.log(product);
+//         debugger;
+//        this.props.dispatch(addNewProduct(product));
+//     }
+
+//     clear = () => {
+//         debugger;
+//        this.props.dispatch(clearShoppingCard());
+//     }
+
+//     render(){
+//         const { products, orderItems } = this.props;
+//            return (
+//             <>
+//                 <Header></Header>
+//                 <hr  />
+//                 <div className="client-container color-grid">
+//                 {<ProductList products={products} addToCard={this.addToCard}/>}
+//                 <div className="vl"></div>
+//                 {<ShoppingCard orderItems={orderItems} clear={this.clear}/>}
+//                 </div>
+//                 <AddProduct addProduct={this.addNewProduct}></AddProduct>
+//             </>
+//      )   
+//     }
+// }
 
    
 export default connect(selectors)(ClientApp);
