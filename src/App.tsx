@@ -5,17 +5,11 @@ import { Route, Switch, BrowserRouter as Router, Link, withRouter, Redirect  } f
 import ClientApp from './components/Containers/client/ClientApp';
 import { AdminApp } from './components/Containers/AdminApp';
 import { AuthService } from './services/AuthService';
-import { Login } from './components/Login/Login';
+import Login from './components/Login/Login';
 import ClientApp1 from './components/Containers/client/ClientApp1';
+import PrivateRoute from './HOC/PrivateRoute';
 
 
-const PrivateRoute = ({ component: Component, ...rest }: any) => (  //My HOC
-  <Route {...rest} render={(props) => (
-    AuthService.isAuth() === true
-      ? <Component {...props} />
-      : <Redirect to='/login' />
-  )} />
-)
 
 function App() {
   return (

@@ -8,8 +8,7 @@ function* getProducts() {
   yield put(actions.getProductsSucceed(data));
 }
 function* addNewProduct(action: any) {
-  debugger;
-  const data = yield ProductApi.addProduct(action.data);
+  yield ProductApi.addProduct(action.data);
   yield put(actions.getProducts());
 }
 

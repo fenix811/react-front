@@ -62,8 +62,8 @@ class ShoppingCard1 extends React.PureComponent<IShoppingCardProps, IShoppingCar
                     </select>
                 </div>
                 {
-                    this.props.orderItems.map((item) => (
-                        <ShoppingCardItem orderItem={item} key={item.id}
+                    this.props.orderItems.map((item, index) => (
+                        <ShoppingCardItem orderItem={item} key={index}
                         />
                     ))
                 }
