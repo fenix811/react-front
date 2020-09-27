@@ -5,6 +5,8 @@ import { systemReducer } from './reducers/systemReducers';
 import { productReducer } from './reducers/productReducers';
 import rootSaga from './sagas';
 import { createLogger } from 'redux-logger';
+import { connectRouter } from 'connected-react-router';
+import { History } from 'history';
 
 declare global {
   interface Window {
@@ -12,10 +14,6 @@ declare global {
   }
 }
 
-export const rootReducer = combineReducers({
-  system: systemReducer,
-  productPage: productReducer
- })
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -28,7 +26,13 @@ const middleware = applyMiddleware(
 
 const compose = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || simpleCompose;
 
-const getStore = (initialState = {}) => {
+const getStore = (history:History, initialState = {}) => {
+  const rootReducer = combineReducers({
+    system: systemReducer,
+    productPage: productReducer,
+    router: connectRouter(history)
+   })
+  
   const store = createStore(rootReducer, initialState, compose(middleware));
 
   sagaMiddleware.run(rootSaga);

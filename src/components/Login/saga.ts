@@ -2,15 +2,17 @@ import { put, takeEvery } from 'redux-saga/effects';
 import { IUser } from '../../models/user';
 import { AuthService } from '../../services/AuthService';
 import * as actions from './actions';
+import {history} from '../../index';
 
 function* loging(action:any) {
-  debugger;
-  const data = yield AuthService.login(action.data);
+  const isLogin = yield AuthService.login(action.data);
+  if(isLogin){
+    history.push("/admin");
+  }
 }
 
 
 function* rootSaga() {
-  debugger;
     yield takeEvery(actions.LOGING, loging);
   }
   

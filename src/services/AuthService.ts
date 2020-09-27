@@ -1,11 +1,10 @@
 import { IUser } from "../models/user";
+import { History, LocationState } from "history";
 
 export const AuthService = {
     isAuth(): boolean {
-        debugger;
-        if(localStorage.getItem('UserName') === null) //TODO
+        if(localStorage.getItem('user') === null) //TODO
         {
-            debugger;
             return false;
         }
         return true;
@@ -13,7 +12,10 @@ export const AuthService = {
     login(user: IUser): any {
             const requestOptions = {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
+                headers: { 
+                    'Accept': 'application/json; charset=utf-8',
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
                 body: JSON.stringify(user)
             };
 
@@ -22,8 +24,8 @@ export const AuthService = {
                 .then(user => {
                     // store user details and jwt token in local storage to keep user logged in between page refreshes
                     localStorage.setItem('user', JSON.stringify(user));
-        
-                    return user;
+                    //history.go('/admin');
+                    return true;
                 });
         }
     }

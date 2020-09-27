@@ -7,14 +7,22 @@ export const ProductApi = {
        .then(response => response.json() as Promise<IProduct[]>)
     },
     addProduct(product: IProduct): Promise<any> {
-        var qwe = JSON.stringify(product);
-        debugger;
         return fetch(`api/product/addproduct`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
               },
             body: JSON.stringify(product)
+        })
+    },
+    test(): Promise<any> {
+        return fetch(`api/product/testauth`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': 'Bearer qwerty'
+              },
+            //body: JSON.stringify()
         })
     },
 };

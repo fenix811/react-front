@@ -41,13 +41,11 @@ interface IAppProps{
     }
 
     clear = () => {
-        debugger;
        this.props.dispatch(clearShoppingCard());
     }
 
     submitOrder = (order: IOrder) => {
         console.log(order);
-        debugger;
     }
     render(){
         const { products, orderItems } = this.props;

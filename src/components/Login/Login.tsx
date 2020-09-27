@@ -6,6 +6,7 @@ import "../../index.css";
 import selectors from './selectors';
 import { Header } from "../../layout/client/Header";
 import { login } from './actions';
+import { History, LocationState } from "history";
 
 // export const Login = () => {
 //     return (
@@ -23,6 +24,7 @@ import { login } from './actions';
 //   };
 interface ILoginProps{
     dispatch: any;
+    history: History<LocationState>;
 };
 
 interface ILoginState{
@@ -45,16 +47,18 @@ class Login extends React.PureComponent<ILoginProps, ILoginState> {
     }
 
     login = () => {
-        console.log(this);
         const newUser = {...this.state};
-
         this.props.dispatch(login(newUser));
-        debugger;
     }
+
     cancel = () => {
-        debugger;
+        this.props.history.push('/');
+//         let history = useHistory();
+//         history.goBack();
     }
+    
     render() {
+        console.log('qwe render');
         const { username, password } = this.state;
         return (
             <>
@@ -75,5 +79,9 @@ class Login extends React.PureComponent<ILoginProps, ILoginState> {
     );
   }
 }
+
+
+//const loginWithRouter = withRouter(Login);
+//export default connect(selectors)(loginWithRouter);
 
 export default connect(selectors)(Login);

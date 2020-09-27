@@ -9,16 +9,17 @@ import { createBrowserHistory } from 'history';
 import getStore from './redux/store'
 
 import { Route, Switch, BrowserRouter as Router } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
-//const history = createBrowserHistory();
-const store = getStore();
+export const history = createBrowserHistory();
+const store = getStore(history);
 
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
-        <App />
-    </Router>
+        <ConnectedRouter history={history}>
+          <App />
+        </ConnectedRouter>
   </Provider>,
   document.getElementById('root')
 );

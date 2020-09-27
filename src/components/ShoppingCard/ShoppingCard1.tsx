@@ -33,8 +33,6 @@ class ShoppingCard1 extends React.PureComponent<IShoppingCardProps, IShoppingCar
         }
     }
     handleSubmit = () => {
-        console.log(this.state);
-        debugger;
 
         this.props.submit({
             payment: "Cash",
@@ -44,7 +42,6 @@ class ShoppingCard1 extends React.PureComponent<IShoppingCardProps, IShoppingCar
     }
 
     handleChange(event: any) {
-        debugger;
         this.setState({
             payment: event.target.value
         });
