@@ -1,6 +1,5 @@
 import { IProduct } from "../models/product";
 
-//const API_HOST_NAME = 'localhost'  //TODO remove if no need
 export const ProductApi = {
     getProducts(): Promise<any> {
         return fetch(`api/product/getproducts`)
@@ -15,16 +14,7 @@ export const ProductApi = {
             body: JSON.stringify(product)
         })
     },
-    test(): Promise<any> {
-        return fetch(`api/product/testauth`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Authorization': 'Bearer qwerty'
-              },
-            //body: JSON.stringify()
-        })
-    },
+
 };
 export const CompanyApi = {
     getProducts(): Promise<any> {

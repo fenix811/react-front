@@ -3,7 +3,7 @@ import { IProduct } from '../../models/product';
 import Product from '../Product/Product';
 
 interface IProductListProps {
-    products: IProduct[];
+    products?: IProduct[];
     addToCard: Function;
 }
 const styles= {
@@ -22,8 +22,8 @@ const ProductList = (props: IProductListProps) => {
             <div style={styles.productList}>
                 <div style={styles.productHeader}>Product list</div>
                 {
-                    props.products.map((item) => (
-                        <Product product={item} addToCard={props.addToCard} key={item.id || item.name}/>
+                    props.products?.map((item) => (
+                        <Product product={item} addToCard={props.addToCard } key={item.id || item.name}/>
                     ))
                 }
             </div >

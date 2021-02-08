@@ -4,7 +4,7 @@ import '../Containers/client/ClientApp.css';
 
 interface IProductProps {
     product: IProduct;
-    addToCard: Function;
+    addToCard?: Function;
 }
 const styles = {
     product: {
@@ -18,7 +18,7 @@ const styles = {
   }
 
   const Product = (props: IProductProps) => {
-    const addToCard = () => props.addToCard(props.product);
+    const addToCard = () => props.addToCard && props.addToCard(props.product);
         return (
             <div style={styles.product} >
                 <span style={styles.productLine}>{props.product.id}</span>
