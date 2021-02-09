@@ -5,6 +5,7 @@ import Product from '../Product/Product';
 interface IProductListProps {
     products?: IProduct[];
     addToCard: Function;
+    mode?: 'view' | 'edit';
 }
 const styles= {
     productHeader: {
@@ -23,7 +24,7 @@ const ProductList = (props: IProductListProps) => {
                 <div style={styles.productHeader}>Product list</div>
                 {
                     props.products?.map((item) => (
-                        <Product product={item} addToCard={props.addToCard } key={item.id || item.name}/>
+                        <Product mode={props.mode} product={item} addToCard={props.addToCard } key={item.id || item.name}/>
                     ))
                 }
             </div >

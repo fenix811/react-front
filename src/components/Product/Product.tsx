@@ -5,6 +5,7 @@ import '../Containers/client/ClientApp.css';
 interface IProductProps {
     product: IProduct;
     addToCard?: Function;
+    mode?: 'view' | 'edit';
 }
 const styles = {
     product: {
@@ -17,13 +18,13 @@ const styles = {
     },
   }
 
-  const Product = (props: IProductProps) => {
-    const addToCard = () => props.addToCard && props.addToCard(props.product);
+  const Product: React.FC<IProductProps> = ({product, addToCard, mode = 'edit'}) => {
+    const handleAdd = () => addToCard && addToCard(product);
         return (
             <div style={styles.product} >
-                <span style={styles.productLine}>{props.product.id}</span>
-                <span >{props.product.name}</span>
-                <button onClick={addToCard}>Add</button>
+                <span style={styles.productLine}>{product.id}</span>
+                <span >{product.name}</span>
+                {mode === 'edit' && <button onClick={handleAdd}>Add</button>}
             </div>
         );
     }

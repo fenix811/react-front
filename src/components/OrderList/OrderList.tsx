@@ -5,7 +5,7 @@ import { AdminContext } from '../../redux/adminContext';
 const OrderList = () => {
     return <AdminContext.Consumer>
     {
-      ({orders}: IOrder[]) => ( orders?.map((o: IOrder) => {
+      ({orders}: any) => ( orders?.map((o: IOrder) => {
         return <div key={o.id}>{o.date}</div>}) 
       )
     }

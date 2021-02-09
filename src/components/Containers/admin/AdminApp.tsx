@@ -27,7 +27,7 @@ export const AdminApp = () => {
             <hr  />
             <Tabs>
                <Tab title="Products">
-                  <ProductList products={adminData?.products || []} addToCard={()=>undefined}></ProductList>
+                  <ProductList mode='view' products={adminData?.products || []} addToCard={()=>undefined}></ProductList>
                </Tab>
                <Tab title="Companies">
                   <CompanyList ></CompanyList>

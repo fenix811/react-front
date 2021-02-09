@@ -44,7 +44,6 @@ const ShoppingCard = (props: IShoppingCardProps) => {
                     ))
                 }
                 <div>
-                    {/* <a href="#" onClick={handleClick}>clear</a> */}
                     <a href="#" onClick={() => props.clear()}>clear</a>
                     <button onClick={() => handleSubmit()}>Create Order</button>
                 </div>

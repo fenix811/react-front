@@ -8,10 +8,7 @@ import { useState } from 'react';
 interface IAddProductProps {
     addProduct: Function;
 }
-interface IAddProductState {
-    name?: string;
-    description?: string;
-}
+
 const styles = {
     product: {
       display: 'flex',
