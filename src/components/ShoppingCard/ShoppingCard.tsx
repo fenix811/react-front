@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IOrderItem } from '../../models/orderItem';
-import ShoppingCardItem from '../ShoppingCardItem/ShoppingCardItem';
+import ShoppingCardItem from './ShoppingCardItem';
 import { useCallback } from 'react';
 
 interface IShoppingCardProps {
