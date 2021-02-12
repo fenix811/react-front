@@ -21,7 +21,6 @@ const styles= {
 const ProductList = (props: IProductListProps) => {
     return (
             <div style={styles.productList}>
-                <div style={styles.productHeader}>Product list</div>
                 {
                     props.products?.map((item) => (
                         <Product mode={props.mode} product={item} addToCard={props.addToCard } key={item.id || item.name}/>

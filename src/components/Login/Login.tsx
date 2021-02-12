@@ -16,7 +16,14 @@ interface ILoginProps{
 export const Login: React.FC<ILoginProps> = ({ history}) => {
     const [values, setValues] = useState({username: '', password: ''});
     const dispatch = useDispatch();
-    const usernameRef = useRef(null);
+
+    const usernameRef = React.useRef<HTMLInputElement>(null);
+    React.useEffect(() => {
+      if (usernameRef.current) {
+        usernameRef.current.focus();
+      }
+    }, []);
+  
     
     const handleChange = (e:any) => {
         const { name, value } = e.target;
@@ -24,10 +31,6 @@ export const Login: React.FC<ILoginProps> = ({ history}) => {
     }
 
     const handleLogin = () => {
-        // if(!usernameRef?.current.value){ //just to use useRef
-        //     debugger;
-        //     return;
-        // }
 
         const newUser = {...values};
         dispatch(login(newUser));
@@ -43,7 +46,7 @@ export const Login: React.FC<ILoginProps> = ({ history}) => {
         <hr  />
         <div className="login-container">
             <div >Login</div>
-            <div><input type="text" name="username" autoFocus  ref={usernameRef} value={values.username} onChange={handleChange}/></div>
+            <div><input type="text" name="username"  ref={usernameRef} value={values.username} onChange={handleChange}/></div>
             <div >Password</div>
             <div><input type="password" name="password" value={values.password} onChange={handleChange}/></div>
             <div>
