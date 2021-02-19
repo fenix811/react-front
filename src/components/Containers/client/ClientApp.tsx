@@ -26,7 +26,6 @@ interface IAppProps{
 export const ClientApp: React.FC<IAppProps> = ({isLoading, products, orderItems, addToCard}) => {
     const dispatch = useDispatch();
     useEffect(() => {
-        debugger;
         dispatch(getProducts());
     }, [])
     const handleAddToCard = (product:any) => {

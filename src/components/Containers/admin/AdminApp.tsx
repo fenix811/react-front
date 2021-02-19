@@ -18,7 +18,6 @@ export const AdminApp = () => {
 
    const [adminData, setAdminData] = useState<IAdminData>();
    useEffect(() => {
-debugger;
       adminServiceApi.getAdminData().then((data) => {
          setAdminData(data);
       })
