@@ -15,9 +15,8 @@ const SearchInput = (props: any, ref: any) => {
         console.log(e);
         setSearchValue(e.target.value); //TODO
     }
-
     return <> 
-            <input onChange={handleChange} value={searchValue} type="text"  />
+            <input onChange={handleChange} ref={ref} value={searchValue} type="text"  />
             {resultValues && <SearchResult values={resultValues}/>}
             </>
 };
